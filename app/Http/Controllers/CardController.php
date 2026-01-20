@@ -12,7 +12,8 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        $cards = Card::all();  
+        return view('card.index', compact('cards'));
     }
 
     /**
@@ -28,7 +29,8 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Card::create($request->all());
+        return back();
     }
 
     /**
@@ -44,7 +46,7 @@ class CardController extends Controller
      */
     public function edit(Card $card)
     {
-        //
+        return view('card.edit', compact('card'));
     }
 
     /**
@@ -52,7 +54,8 @@ class CardController extends Controller
      */
     public function update(Request $request, Card $card)
     {
-        //
+        $card->update($request->all());
+        return redirect('/card');
     }
 
     /**
@@ -60,6 +63,7 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
-        //
+        $card->delete();
+        return back();
     }
 }
